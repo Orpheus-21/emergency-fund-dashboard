@@ -14,7 +14,7 @@ This project gives the fund rules, like the risk limits of a trader. You write o
 - the days left to the next target, at your current pace,
 - an alarm when the fund falls too far from its highest level.
 
-The dashboard is code inside one note. It runs in Obsidian with the Dataview plugin. It needs no server and no account. All data stays in your vault.
+The dashboard is code inside one note. The daily log is a table in a second note. It runs in Obsidian with the Dataview plugin. It needs no server and no account. All data stays in your vault.
 
 The formulas are in [docs/formulas.md](docs/formulas.md). The page explains each number with a plain definition and an example.
 
@@ -35,10 +35,10 @@ The project has no other dependency. Node.js and Python are not needed.
    git clone https://github.com/Orpheus-21/emergency-fund-dashboard.git
    ```
 
-3. Copy all seven files from the `notes/` folder into your vault.
-4. Open the note `Emergency fund(log)` in Reading view.
-5. Delete the five sample rows in the Log table.
-6. Write your first row.
+3. Copy all eight files from the `notes/` folder into your vault.
+4. Open the note `Emergency fund(log)`.
+5. Delete the five sample rows in the Log table. Write your first row.
+6. Open the note `Emergency fund dashboard` in Reading view.
 
 [docs/obsidian-setup.md](docs/obsidian-setup.md) has the full steps, the names that you must keep, and a list of problems with fixes.
 
@@ -61,13 +61,13 @@ A total that falls is a withdrawal. A total that rises is a deposit. You do not 
 
 1. Open `Emergency fund checklist`.
 2. Apply `Emergency fund test`. If one answer is no, stop.
-3. Read `Max withdrawal now` in the Status table.
+3. Read `Max withdrawal now` in the Status table of `Emergency fund dashboard`.
 4. Take the cash. Log the new total the same day.
 5. Read `Replenishment owed`. Pay this amount back before you spend spare money on other things.
 
 ### Read the dashboard
 
-The Status table shows these rows. The values below come from the sample Log in the repo.
+Open `Emergency fund dashboard`. The Status table shows these rows. The values below come from the sample Log in the repo.
 
 ```
 Balance               ₹19,300 on 2026-10-05
@@ -97,7 +97,7 @@ The Settings table is in the note `Emergency fund settings`. Change the numbers 
 | Yellow from | 80 | The state is Yellow from this fill level. |
 | Orange from | 60 | The state is Orange from this fill level. Below it the state is Red. |
 
-Two values are in the code and not in the Settings table. To change them, edit the code block in `Emergency fund(log)`.
+Two values are in the code and not in the Settings table. To change them, edit the code block in `Emergency fund dashboard`.
 
 - The currency sign and the number format: the line `const money = n => "₹" + Math.round(n).toLocaleString("en-IN");`. Change `"₹"` and `"en-IN"`.
 - The length of the pace window, 30 days: the number in `Math.min(30, ...)`.
@@ -110,14 +110,14 @@ The repo has two folders.
 
 | Path | Content |
 | --- | --- |
-| `notes/` | The seven Obsidian notes. |
+| `notes/` | The eight Obsidian notes. |
 | `docs/` | The formulas and the Obsidian setup. |
 
-The code is one `dataviewjs` block at the top of `Emergency fund(log).md`. It is about 90 lines of JavaScript. It does these steps:
+The code is one `dataviewjs` block in `Emergency fund dashboard.md`. It is about 90 lines of JavaScript. It does these steps:
 
 1. It finds the note `Emergency fund settings` with `dv.page` and reads the file text.
 2. It reads each table row in that note. It matches the first column to a setting by the start of the label. It stops with an error message when a value is missing.
-3. It reads the file text of its own note. It keeps the part after the heading `## Log`.
+3. It finds the note `Emergency fund(log)` in the same way and reads the file text. It keeps the part after the heading `## Log`.
 4. It reads each row of that part. A row is valid when the first cell is a date `YYYY-MM-DD` and the second cell is a number. The code skips other rows. When two rows have the same date, the later row wins.
 5. It sorts the rows by date and calculates the numbers.
 6. It draws two tables with `dv.table`: Status and Withdrawals.
