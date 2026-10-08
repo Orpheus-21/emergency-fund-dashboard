@@ -20,4 +20,4 @@ To add a row, put the cursor in the last cell and press `Enter`.
 
 Obsidian core cannot run code. Without Dataview, the dashboard stays empty.
 
-The dashboard reads two tables: the Log in [[Emergency fund(log)]] and the numbers in [[Emergency fund settings]]. Change a number there and the dashboard changes.
+The dashboard is the note [[Emergency fund dashboard]]. It reads two tables: the Log in [[Emergency fund(log)]] and the numbers in [[Emergency fund settings]]. Change a number there and the dashboard changes.
