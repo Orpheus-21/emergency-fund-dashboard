@@ -12,7 +12,8 @@ This project gives the fund rules, like the risk limits of a trader. You write o
 - the amount that you owe the fund after a withdrawal,
 - the state of the fund: Green, Yellow, Orange, or Red,
 - the days left to the next target, at your current pace,
-- an alarm when the fund falls too far from its highest level.
+- an alarm when the fund falls too far from its highest level,
+- a graph of the balance by date, with the floor and the targets as dashed lines.
 
 The dashboard is code inside one note. The daily log is a table in a second note. It runs in Obsidian with the Dataview plugin. It needs no server and no account. All data stays in your vault.
 
@@ -35,10 +36,10 @@ The project has no other dependency. Node.js and Python are not needed.
    git clone https://github.com/Orpheus-21/emergency-fund-dashboard.git
    ```
 
-3. Copy all eight files from the `notes/` folder into your vault.
+3. Copy all nine files from the `notes/` folder into your vault.
 4. Open the note `Emergency fund(log)`.
 5. Delete the five sample rows in the Log table. Write your first row.
-6. Open the note `Emergency fund dashboard` in Reading view.
+6. Open the note `Emergency fund dashboard` in Reading view. The graph shows above the Status table.
 
 [docs/obsidian-setup.md](docs/obsidian-setup.md) has the full steps, the names that you must keep, and a list of problems with fixes.
 
@@ -67,7 +68,7 @@ A total that falls is a withdrawal. A total that rises is a deposit. You do not 
 
 ### Read the dashboard
 
-Open `Emergency fund dashboard`. The Status table shows these rows. The values below come from the sample Log in the repo.
+Open `Emergency fund dashboard`. The graph shows first. The Status table shows these rows. The values below come from the sample Log in the repo.
 
 ```
 Balance               ₹19,300 on 2026-10-05
@@ -99,7 +100,7 @@ The Settings table is in the note `Emergency fund settings`. Change the numbers 
 
 Two values are in the code and not in the Settings table. To change them, edit the code block in `Emergency fund dashboard`.
 
-- The currency sign and the number format: the line `const money = n => "₹" + Math.round(n).toLocaleString("en-IN");`. Change `"₹"` and `"en-IN"`.
+- The currency sign and the number format: the line `const money = n => "₹" + Math.round(n).toLocaleString("en-IN");`. Change `"₹"` and `"en-IN"`. This line is in `Emergency fund dashboard` and in `Emergency fund chart`. The chart has a second line, `const short`, with the sign `"₹"` for the axis labels.
 - The length of the pace window, 30 days: the number in `Math.min(30, ...)`.
 
 The text of the other notes is yours to edit. The numbers in the dashboard do not depend on that text.
@@ -110,7 +111,7 @@ The repo has two folders.
 
 | Path | Content |
 | --- | --- |
-| `notes/` | The eight Obsidian notes. |
+| `notes/` | The nine Obsidian notes. |
 | `docs/` | The formulas and the Obsidian setup. |
 
 The code is one `dataviewjs` block in `Emergency fund dashboard.md`. It is about 90 lines of JavaScript. It does these steps:
@@ -121,6 +122,8 @@ The code is one `dataviewjs` block in `Emergency fund dashboard.md`. It is about
 4. It reads each row of that part. A row is valid when the first cell is a date `YYYY-MM-DD` and the second cell is a number. The code skips other rows. When two rows have the same date, the later row wins.
 5. It sorts the rows by date and calculates the numbers.
 6. It draws two tables with `dv.table`: Status and Withdrawals.
+
+The graph is a second `dataviewjs` block of about 65 lines in `Emergency fund chart.md`. The dashboard note and the log note embed it with `![[Emergency fund chart]]`. The graph reads the same two tables in the same way. It draws an SVG picture with the colors of your Obsidian theme. [docs/formulas.md](docs/formulas.md) lists the rules of the axes.
 
 The code does not write to the vault and does not use the network. No script outside Obsidian is part of the project.
 

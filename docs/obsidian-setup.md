@@ -20,19 +20,20 @@ The dashboard needs no other plugin, no account, and no network.
 3. If Obsidian shows Restricted mode, press the button to turn on community plugins.
 4. Press Browse. Search for `Dataview`. Press Install, then Enable.
 5. Open the Dataview settings. Turn on `Enable JavaScript Queries`.
-6. Copy all eight files from the `notes/` folder of this repo into your vault. Use any folder. Put all eight files in the same vault.
+6. Copy all nine files from the `notes/` folder of this repo into your vault. Use any folder. Put all nine files in the same vault.
 7. Open the note `Emergency fund dashboard`.
 8. Switch to Reading view. The default key is `Ctrl+E`.
-9. Check that the Status table shows the sample numbers.
+9. Check that the graph shows five points and that the Status table shows the sample numbers.
 10. Open the note `Emergency fund(log)`. Delete the five sample rows in the Log table. Write your own first row.
 11. Open `Emergency fund dashboard` again. Check that the Status table shows your row.
 
-## The eight notes
+## The nine notes
 
 | Note | Purpose |
 | --- | --- |
 | `Emergency fund(log)` | The Log table. You write here each day. |
 | `Emergency fund dashboard` | The dashboard code. You read here. |
+| `Emergency fund chart` | The graph code. The dashboard note and the log note embed it. |
 | `Emergency fund settings` | The table of nine numbers. The dashboard reads it. |
 | `Emergency fund rules` | The rules of the system, in plain words. |
 | `Emergency fund test` | The three questions that decide if an expense is an emergency. |
@@ -40,15 +41,15 @@ The dashboard needs no other plugin, no account, and no network.
 | `Emergency fund checklist` | The steps to follow before you take cash out. |
 | `Emergency fund how to log` | How to add a row. |
 
-Three notes affect the numbers: `Emergency fund dashboard`, `Emergency fund(log)`, and `Emergency fund settings`. The other five are text for you to read and edit.
+Four notes hold code or data: `Emergency fund dashboard`, `Emergency fund chart`, `Emergency fund(log)`, and `Emergency fund settings`. The other five are text for you to read and edit.
 
 ## Names that you must keep
 
-- Keep the note names `Emergency fund settings` and `Emergency fund(log)`. The dashboard code finds each note by its name. You can move the notes to another folder.
+- Keep the note names `Emergency fund settings`, `Emergency fund(log)`, and `Emergency fund chart`. The code finds the first two by name. The embed line `![[Emergency fund chart]]` finds the third. You can move the notes to another folder.
 - Keep the heading `## Log` in the log note. The dashboard reads the rows after this heading.
 - Keep the first word of each row in the Settings table. See the next section.
 
-To use another name for a note, change the name in the matching line in the code block of the dashboard note:
+To use another name for a note, change the name in the matching line of the code block. The dashboard note and the chart note both have these lines:
 
 ```js
 const sp = dv.page("Emergency fund settings");
@@ -75,6 +76,7 @@ The case of the letters does not matter. The text after the first words is free.
 | --- | --- | --- |
 | The code block shows as plain text | Dataview is off, or JavaScript queries are off | Do steps 4 and 5 again. Switch to Reading view. |
 | `Note not found: Emergency fund settings` | The settings note is missing or has another name | Copy the note into the vault, or change the name in the code. |
+| The graph shows as the text `![[Emergency fund chart]]` | The chart note is missing or has another name | Copy the note into the vault, or change the name in the embed line. |
 | `Note not found: Emergency fund(log)` | The log note is missing or has another name | Copy the note into the vault, or change the name in the code. |
 | `Settings table error ... Missing or wrong value: floor` | The row for the setting is missing or its value is not a number | Check the label and the value in the Settings table. The names in the message are `floor`, `single_limit_pct`, `drawdown_limit_pct`, `stage_1`, `stage_2`, `stage_3`, `green_pct`, `yellow_pct`, and `orange_pct`. |
 | `No log lines yet` | The dashboard found no valid row after `## Log` in the log note | Write the date as `YYYY-MM-DD`. Write the total as a number. |
@@ -84,4 +86,4 @@ The case of the letters does not matter. The text after the first words is free.
 
 A Dataview JavaScript query is code. Obsidian runs it with access to your vault. Read the code in a note before you trust it.
 
-The code block in this repo reads two other notes and shows tables. It does not write to your vault. It does not use the network. Check this yourself: the block is about 90 lines in `Emergency fund dashboard`.
+The two code blocks in this repo read other notes and show tables and a picture. It does not write to your vault. It does not use the network. Check this yourself: the dashboard block is about 90 lines in `Emergency fund dashboard`. The graph block is about 65 lines in `Emergency fund chart`.
