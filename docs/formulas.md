@@ -200,6 +200,25 @@ The log check counts the days from the date of the last row to today.
 | 1 | Last line is from yesterday |
 | 2 or more | MISSING and the number of days |
 
+## 12. The graph
+
+The graph shows the balance by date. It reads the same Log and the same Settings. It adds no new setting.
+
+- **Points.** The graph has one point for each Log row. A line joins the points. The newest point is larger and shows its balance.
+- **Red points.** A point is red when its total is lower than the total of the row before. This is a withdrawal.
+- **Horizontal position.** The position follows the date. A gap of three days is three times as wide as a gap of one day.
+- **Dashed lines.** One dashed line shows the floor and one shows each stage. When two have the same value, they share one line and one label.
+- **Top of the graph.** The top is the first level above the peak. The levels are the floor and the three stages. If the peak is above all of them, the top is the peak plus 10%.
+- **Bottom of the graph.** The bottom is always 0.
+- **Date labels.** The graph shows up to five date labels. A Log with one row shows one point and one label.
+
+```
+Top of the graph = the lowest level above the Peak
+                   (or Peak x 1.1 when no level is above the Peak)
+```
+
+Example: the peak is 21,000. The levels are 10,000, 10,000, 25,000, and 50,000. The top of the graph is 25,000. The dashed lines are at 10,000 and 25,000.
+
 ## Limits of this model
 
 These limits are true for the current code.
