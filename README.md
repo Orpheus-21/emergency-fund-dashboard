@@ -15,6 +15,10 @@ This project gives the fund rules, like the risk limits of a trader. You write o
 - an alarm when the fund falls too far from its highest level,
 - a graph of the balance by date, with the floor and the targets as dashed lines.
 
+![The graph for a sample Log of 35 days. The balance rises from 8,700 to 26,400 and passes the floor and Stage 2. Two hollow dots mark days when the total fell.](docs/images/graph.png)
+
+The picture is the graph in Obsidian. It is drawn from a sample Log of 35 days. This Log is not the sample in `notes/`. The colors come from the Obsidian theme of the author. Your colors can differ.
+
 The dashboard is code inside one note. The daily log is a table in a second note. It runs in Obsidian with the Dataview plugin. It needs no server and no account. All data stays in your vault.
 
 The formulas are in [docs/formulas.md](docs/formulas.md). The page explains each number with a plain definition and an example.

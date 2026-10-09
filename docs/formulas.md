@@ -205,7 +205,7 @@ The log check counts the days from the date of the last row to today.
 The graph shows the balance by date. It reads the same Log and the same Settings. It adds no new setting.
 
 - **Points.** The graph has one point for each Log row. A line joins the points. The newest point is larger and shows its balance.
-- **Red points.** A point is red when its total is lower than the total of the row before. This is a withdrawal.
+- **Hollow points.** A point is hollow, with an outline in the error color of your theme, when its total is lower than the total of the row before. This is a withdrawal.
 - **Horizontal position.** The position follows the date. A gap of three days is three times as wide as a gap of one day.
 - **Dashed lines.** One dashed line shows the floor and one shows each stage. When two have the same value, they share one line and one label.
 - **Top of the graph.** The top is the first level above the peak. The levels are the floor and the three stages. If the peak is above all of them, the top is the peak plus 10%.
