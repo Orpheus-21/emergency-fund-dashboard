@@ -53,7 +53,7 @@ const pts = log.map(e => `${x(e.date)},${y(e.amount)}`).join(" ");
 const area = `${x(log[0].date)},${y(0)} ${pts} ${x(log.at(-1).date)},${y(0)}`;
 const dots = log.map((e, i) => {
   const drop = i > 0 && e.amount < log[i - 1].amount;
-  return `<circle cx="${x(e.date)}" cy="${y(e.amount)}" r="${i === log.length - 1 ? 5 : 3}" style="fill:${drop ? "var(--text-error)" : "var(--interactive-accent)"}"><title>${e.date}: ${money(e.amount)}</title></circle>`;
+  return `<circle cx="${x(e.date)}" cy="${y(e.amount)}" r="${i === log.length - 1 ? 5 : 3}" style="${drop ? "fill:var(--background-primary);stroke:var(--text-error);stroke-width:2" : "fill:var(--interactive-accent)"}"><title>${e.date}: ${money(e.amount)}</title></circle>`;
 }).join("");
 const now = log.at(-1);
 const label = `<text x="${x(now.date)}" y="${y(now.amount) - 11}" text-anchor="${x(now.date) < W / 2 ? "start" : "end"}" style="fill:var(--text-normal);font-weight:600;paint-order:stroke;stroke:var(--background-primary);stroke-width:4px">${money(now.amount)}</text>`;
@@ -62,5 +62,5 @@ dv.container.createDiv().innerHTML =
   `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Emergency fund balance by date" style="max-width:${W}px;font:11px var(--font-interface)">` +
   `${guides}${axis}<polygon points="${area}" style="fill:var(--interactive-accent);opacity:0.12"/>` +
   `<polyline points="${pts}" style="fill:none;stroke:var(--interactive-accent);stroke-width:2"/>${dots}${label}</svg>`;
-dv.paragraph("Balance by date. Dashed lines: the floor and the stages. Red dots: a day when the total fell.");
+dv.paragraph("Balance by date. Dashed lines: the floor and the stages. Hollow dots: a day when the total fell.");
 ```
