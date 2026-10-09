@@ -2,6 +2,8 @@ Part of the emergency fund system. Add the daily rows in [[Emergency fund(log)]]
 
 ## Dashboard
 
+![[Emergency fund chart]]
+
 ```dataviewjs
 const L = dv.luxon.DateTime;
 const money = n => "₹" + Math.round(n).toLocaleString("en-IN");

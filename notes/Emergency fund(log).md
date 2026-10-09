@@ -10,6 +10,8 @@ Related notes:
 - [[Emergency fund checklist]]
 - [[Emergency fund how to log]]
 
+![[Emergency fund chart]]
+
 ## Log
 
 | Date       | Total (₹) | Note                              |
